@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,15 @@
 	<script type="text/javascript" src="static/layer/layer.js"></script>
 	<link href="static/layer/mobile/need/layer.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="jsFiles/login.js"></script>
+	<script type="text/javascript">
+
+function changeCode(d){
+
+    d.src = "ValidateCodeServlet?a="+new Date();
+
+}
+
+</script>
 	<style type="text/css">
 	body{
 	   background: url(images/a.jpg)repeat;
