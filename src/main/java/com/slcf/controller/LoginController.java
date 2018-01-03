@@ -52,6 +52,7 @@ public class LoginController {
 				map.put("id", userBean.getUser_id());
 				request.getSession().setAttribute("USER", userBean);
 				request.getSession().setAttribute("NAME", userBean.getUser_name());
+				request.getSession().setAttribute("ACCOUNT", userBean.getUser_account());
 				request.getSession().setAttribute("PASS", userBean.getUser_password());
 				request.getSession().setAttribute("ID", userBean.getUser_id());
 			}else{

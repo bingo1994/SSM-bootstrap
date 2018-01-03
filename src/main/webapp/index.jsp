@@ -50,7 +50,7 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${user.username}</strong>
                              </span> <span class="text-muted text-xs block">${NAME } <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html" id="">个人信息</a></li>
+                            <!-- <li><a href="profile.html" id="">个人信息</a></li> -->
                             <li><a onclick="openPassDlg()">修改密码</a></li>
                             <li class="divider"></li>
                             <li><a onclick="quit()">安全退出</a></li>

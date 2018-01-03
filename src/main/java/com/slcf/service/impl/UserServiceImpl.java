@@ -91,7 +91,13 @@ public class UserServiceImpl implements UserService{
 		int i=userDao.saveUser(user);
 		if(i>0){
 			List<UserBean>list=userDao.getUserByAccount(user.getUser_account());
+			int x=userDao.saveUserRole(list.get(0).getUser_id(), 1);//默认是普通员工
 			j=userDao.insertUserOpt(list.get(0).getUser_id(), "添加", name);
+			if(x==1&&j==1){
+				j=1;
+			}else{
+				j=0;
+			}
 		}
 		return j;
 	}
@@ -160,11 +166,12 @@ public class UserServiceImpl implements UserService{
 	
 	public boolean saveUserRole(int uid, String ridStr) {
 		boolean flag=false;
-		int sum=0;
-		
-		int x=userDao.delUserRoleByUid(uid);
-		System.out.println(ridStr.contains(",")+"--------lllllllllllll");
-		if(x>0){
+		int sum=0,x=0;
+		int count=userDao.getCount(uid);
+		if(count>=1){
+			x=userDao.delUserRoleByUid(uid);
+		}
+		if(count>=1&&x>0||count==0){
 			if(ridStr.contains(",")){
 				String idStrs[]=ridStr.split(",");
 				int ids[]=new int[idStrs.length];

@@ -6,16 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>请假请求</title>
+<title>我的请求</title>
 <script type="text/javascript" src="${path }/jsFiles/quest.js"></script>
 <style type="text/css">
- #addDlg,#mydlg {
+ #progressDlg {
      position: fixed;  
-    top: 10%;
+    top: 0%;
     left: 30%;
-    width: 800px;
-    height: 800px;
-     margin: 100px 100 0 0px;/* margin 负值为宽高的一半 */ 
 } 
 </style>
 </head>
@@ -65,7 +62,7 @@
 			<div class="form-group">
 			<label class="col-md-2 control-label">开始时间：</label>
 			<div class="col-md-3">
-			<input type="text" name="stratTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="form-control form-control-static" placeholder="请选择开始时间">
+			<input type="text" name="startTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="form-control form-control-static" placeholder="请选择开始时间">
 			</div>
 			</div>
 			
@@ -85,7 +82,7 @@
             <div class="modal-footer col-md-6">
             <!--用来清空表单数据-->
             <input type="reset" name="reset" style="display: none;" />
-                <button type="button" class="btn btn-default" onclick="closeDlg()">关闭</button>
+                <button type="button" class="btn btn-default" onclick="closeNoteDlg()">关闭</button>
                <button type="button" onclick="saveNote()" class="btn btn-primary">保存</button>
             </div>
             </form>
@@ -95,84 +92,24 @@
 </div>
 
 
-<!-- 模态框（Modal） -->
-<!-- 修改 -->
-<div id="mydlg" class="modal fade"  tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">修改角色</h4>
-            </div>
-            <div class="container">
-			<form class="form-horizontal" id="myform"  method="post">
-			<div class="form-group">
-			<label class="col-md-2 control-label">角色编号：</label>
-			<div class="col-md-3 ">
-			<input type="text" id="role_id1" name="role_id"  class="form-control form-control-static" readonly="readonly" placeholder="必填">
-			</div>
-			</div>
-			
-			<div class="form-group">
-			<label class="col-md-2 control-label">角色名称：</label>
-			<div class="col-md-3 ">
-			<input type="text" id="role_name1" onblur="checkRole1()" name="role_name" class="form-control form-control-static" placeholder="必填">
-			</div>
-			<label class="control-label"><span id="infos" style="color:red"></span></label>
-			</div>
-			
-			<div class="form-group">
-			<label class="col-md-2 control-label">上级角色：</label>
-			<div class="col-md-3">
-			<select id="pid1" name="pid" class="form-control form-control-static" ></select>
-			</div>
-			</div>
-			
-			
-			<div class="form-group">
-			<label class="col-md-2 control-label">部门描述：</label>
-			<div class="col-md-3">
-			<textarea rows="3" id="role_desc1" name="role_desc" cols="30" class="form-control form-control-static" placeholder="必填"></textarea>
-			</div>
-			</div>
-            <div class="modal-footer col-md-6">
-            <!--用来清空表单数据-->
-            <input type="reset" name="reset" style="display: none;" />
-                <button type="button" class="btn btn-default" onclick="closeDlg()">关闭</button>
-               <button type="button" onclick="upRole()" class="btn btn-primary">保存</button>
-            </div>
-            </form>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
 
 
 <!-- 模态框（Modal） -->
-<!-- 权限-->
-<div id="authDlg" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- 查看流程图 -->
+<div id="progressDlg" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">分配权限</h4>
+                <h4 class="modal-title" id="myModalLabel">进程图</h4>
             </div>
             <div class="container">
-			<form class="form-horizontal" id="authForm"  method="post">
-			
-			<div class="form-group">
-			<label class="col-md-2 control-label">角色权限：</label>
-			<div class="col-md-3 ">
-			<input type="hidden" id="rid" name="role_id">
-			
-			<div id="tree" ></div>
-			</div>
-			</div>
-            <div class="modal-footer col-md-6">
+			<form class="form-horizontal" id="actForm" enctype="multipart/form-data" method="post" >
+			<span id="imgSpan"></span>
+            <div class="modal-footer col-md-8">
             <!--用来清空表单数据-->
             <input type="reset" name="reset" style="display: none;" />
-                <button type="button" class="btn btn-default" onclick="closeDlg()">关闭</button>
-               <button type="button" onclick="saveAuth()" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default" onclick="closeprogressDlg()">关闭</button>
             </div>
             </form>
             </div>

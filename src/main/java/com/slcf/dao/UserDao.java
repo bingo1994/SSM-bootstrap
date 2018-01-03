@@ -82,6 +82,8 @@ public interface UserDao {
 	@Delete("delete from tb_user_role where user_id =#{uid}")
 	public int delUserRoleByUid(int uid);
 	
+	@Select("select count(*) from tb_user_role where user_id =#{uid}")
+	public int getCount(int uid);
 	/**
 	 * 删除用户操作表
 	 * @param uid
